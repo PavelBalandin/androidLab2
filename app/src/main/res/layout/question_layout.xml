@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/padding_container">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/question_title"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/questionEdit"
+        android:layout_width="@dimen/edit_width"
+        android:layout_height="@dimen/c_height"
+        android:hint="@string/write_your_question"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/answerButton"
+        android:layout_width="@dimen/c_width"
+        android:layout_height="@dimen/c_height"
+        android:text="@string/get_answer" />
+
+</TableLayout>

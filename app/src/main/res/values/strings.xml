@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">OracleApp</string>
+    <string name="menu">Menu</string>
+    <string name="ask_a_question">question</string>
+    <string name="exit">exit</string>
+    <string name="settings">settings</string>
+    <string name="settings_name">Settings</string>
+    <string name="version">Version: 0.1</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="enter_date">Birthday</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="save">save</string>
+    <string name="get_answer">get answer</string>
+    <string name="question_title">Question</string>
+    <string name="write_your_question">Write your question</string>
+</resources>

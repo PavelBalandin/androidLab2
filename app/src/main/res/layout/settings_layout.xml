@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_container">
+
+    <TextView
+        android:id="@+id/textSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_name"
+        android:textSize="20sp" />
+
+
+    <EditText
+        android:id="@+id/nameEdit"
+        android:layout_width="@dimen/c_width"
+        android:layout_height="@dimen/c_height"
+        android:hint="@string/name" />
+
+    <EditText
+        android:id="@+id/surnameEdit"
+        android:layout_width="@dimen/c_width"
+        android:layout_height="@dimen/c_height"
+        android:hint="@string/surname" />
+
+    <Button
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_date" />
+
+    <RadioGroup
+        android:id="@+id/radioGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioButtonMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/male"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="@dimen/c_width"
+        android:layout_height="@dimen/c_height"
+        android:text="@string/save" />
+
+
+</LinearLayout>
