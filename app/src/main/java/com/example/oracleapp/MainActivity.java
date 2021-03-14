@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.oracleapp.entities.AppSettings;
 
+import org.parceler.Parcels;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String KEY_SETTINGS = "SETTINGS";
@@ -26,9 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.menu_layout);
 
         if (savedInstanceState != null) {
-            appSettings = savedInstanceState.getParcelable(KEY_SETTINGS);
+            appSettings = (AppSettings) Parcels.unwrap(savedInstanceState.getParcelable(KEY_SETTINGS));
         }
-
 
         Button questionButton = this.findViewById(R.id.askButton);
         Button settingsButton = this.findViewById(R.id.settingsButton);
@@ -37,15 +38,15 @@ public class MainActivity extends AppCompatActivity {
         questionButton.setOnClickListener(v -> {
             if (appSettings != null) {
                 Intent intent = new Intent(this, QuestionActivity.class);
-                intent.putExtra(QuestionActivity.EXTRA_SETTINGS, appSettings);
+                intent.putExtra(QuestionActivity.EXTRA_SETTINGS, Parcels.wrap(appSettings));
                 startActivityForResult(intent, RQ_SETTINGS);
             } else
-                Toast.makeText(this, "You must fill the settings form!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.settings_warning, Toast.LENGTH_SHORT).show();
         });
 
         settingsButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, SettingsActivity.class);
-            intent.putExtra(SettingsActivity.EXTRA_SETTINGS, appSettings);
+            intent.putExtra(SettingsActivity.EXTRA_SETTINGS, Parcels.wrap(appSettings));
             startActivityForResult(intent, RQ_SETTINGS);
         });
 
@@ -53,21 +54,19 @@ public class MainActivity extends AppCompatActivity {
             System.exit(0);
         });
 
-        Log.d(TAG, "Got new settings: " + appSettings);
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(KEY_SETTINGS, appSettings);
+        outState.putParcelable(KEY_SETTINGS, Parcels.wrap(appSettings));
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RQ_SETTINGS && resultCode == RESULT_OK) {
-            appSettings = data.getParcelableExtra(SettingsActivity.EXTRA_SETTINGS);
-            Log.d(TAG, "Got new settings: " + appSettings);
+            appSettings = (AppSettings) Parcels.unwrap(data.getParcelableExtra(SettingsActivity.EXTRA_SETTINGS));
         }
     }
 }

@@ -1,16 +1,21 @@
 package com.example.oracleapp.entities;
 
-import android.os.Parcel;
 import android.os.Parcelable;
+
+import org.parceler.Parcel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AppSettings implements Parcelable {
-    private String name;
-    private String surname;
-    private Date date;
-    private String gender;
+@Parcel
+public class AppSettings {
+    String name;
+    String surname;
+    Date date;
+    String gender;
+
+    public AppSettings() {
+    }
 
     public AppSettings(String name, String surname, Date date, String gender) {
         this.name = name;
@@ -63,44 +68,4 @@ public class AppSettings implements Parcelable {
     }
 
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
-        dest.writeString(this.surname);
-        dest.writeLong(this.date != null ? this.date.getTime() : -1);
-        dest.writeString(this.gender);
-    }
-
-    public void readFromParcel(Parcel source) {
-        this.name = source.readString();
-        this.surname = source.readString();
-        long tmpDate = source.readLong();
-        this.date = tmpDate == -1 ? null : new Date(tmpDate);
-        this.gender = source.readString();
-    }
-
-    protected AppSettings(Parcel in) {
-        this.name = in.readString();
-        this.surname = in.readString();
-        long tmpDate = in.readLong();
-        this.date = tmpDate == -1 ? null : new Date(tmpDate);
-        this.gender = in.readString();
-    }
-
-    public static final Parcelable.Creator<AppSettings> CREATOR = new Parcelable.Creator<AppSettings>() {
-        @Override
-        public AppSettings createFromParcel(Parcel source) {
-            return new AppSettings(source);
-        }
-
-        @Override
-        public AppSettings[] newArray(int size) {
-            return new AppSettings[size];
-        }
-    };
 }

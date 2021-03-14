@@ -15,4 +15,6 @@
     <string name="get_answer">get answer</string>
     <string name="question_title">Question</string>
     <string name="write_your_question">Write your question</string>
+    <string name="warning">You must fill all fields</string>
+    <string name="settings_warning">You must fill the settings form!</string>
 </resources>

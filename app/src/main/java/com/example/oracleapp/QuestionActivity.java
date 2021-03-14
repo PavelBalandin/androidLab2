@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.oracleapp.entities.AnswerService;
 import com.example.oracleapp.entities.AppSettings;
 
+import org.parceler.Parcels;
+
 public class QuestionActivity extends AppCompatActivity {
     private AppSettings appSettings;
     public static final String EXTRA_SETTINGS = "SETTINGS";
@@ -38,7 +40,7 @@ public class QuestionActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_layout);
-        appSettings = getIntent().getParcelableExtra(EXTRA_SETTINGS);
+        appSettings = (AppSettings) Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_SETTINGS));
         EditText editText = this.findViewById(R.id.questionEdit);
         Intent intent = new Intent(this, AnswerService.class);
         bindService(intent, connection, BIND_AUTO_CREATE);

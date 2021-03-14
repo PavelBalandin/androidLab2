@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.oracleapp.entities.AppSettings;
 
+import org.parceler.Parcels;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,10 +49,10 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_layout);
 
         if (savedInstanceState != null) {
-            appSettings = savedInstanceState.getParcelable(KEY_SETTINGS);
+            appSettings = (AppSettings) Parcels.unwrap(savedInstanceState.getParcelable(KEY_SETTINGS));
         }
 
-        appSettings = getIntent().getParcelableExtra(EXTRA_SETTINGS);
+        appSettings = (AppSettings) Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_SETTINGS));
         nameEdit = this.findViewById(R.id.nameEdit);
         surnameEdit = this.findViewById(R.id.surnameEdit);
         dateButton = this.findViewById(R.id.datePicker);
@@ -63,7 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
             dateButton.setText(appSettings.getDate().toString());
             date = appSettings.getDate();
             dateButton.setText(sdf.format(date));
-            if (appSettings.getGender().equals("female")) {
+            if (appSettings.getGender().equals(getString(R.string.female))) {
                 RadioButton radioButton = this.findViewById(R.id.radioButtonFemale);
                 radioButton.setChecked(true);
             }
@@ -76,24 +78,23 @@ public class SettingsActivity extends AppCompatActivity {
             if (name != null && surname != null && date != null && gender != null) {
                 AppSettings appSettingsUpdated = new AppSettings(name, surname, date, gender);
                 Intent intent = new Intent();
-                intent.putExtra(EXTRA_SETTINGS, appSettingsUpdated);
+                intent.putExtra(EXTRA_SETTINGS, Parcels.wrap(appSettingsUpdated));
                 setResult(RESULT_OK, intent);
                 finish();
             } else
-                Toast.makeText(this, "You must fill all fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.warning, Toast.LENGTH_SHORT).show();
 
         });
 
         dateButton.setOnClickListener(v -> {
             setDate();
         });
-        Log.d(TAG, "Got pppp settings: " + appSettings);
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(KEY_SETTINGS, appSettings);
+        outState.putParcelable(KEY_SETTINGS, Parcels.wrap(appSettings));
     }
 
     private void updateData() {
