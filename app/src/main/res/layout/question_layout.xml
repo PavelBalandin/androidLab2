@@ -26,4 +26,6 @@
         android:layout_height="@dimen/c_height"
         android:text="@string/get_answer" />
 
+    <ProgressBar android:id="@+id/progress" />
+
 </TableLayout>
