@@ -1,8 +1,8 @@
 package com.example.oracleapp;
 
 public class ViewState {
-    boolean showProgress = false;
-    boolean showResult = false;
-    boolean isButtonEnabled = true;
-    String result = "";
+    protected boolean showProgress = false;
+    protected boolean showResult = false;
+    protected boolean isButtonEnabled = true;
+    protected String result = "";
 }

@@ -19,9 +19,6 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".QuestionActivity" />
 
-        <service
-            android:name=".entities.AnswerService"
-            android:exported="false" />
     </application>
 
 </manifest>

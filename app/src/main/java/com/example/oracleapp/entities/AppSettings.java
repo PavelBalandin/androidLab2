@@ -1,7 +1,5 @@
 package com.example.oracleapp.entities;
 
-import android.os.Parcelable;
-
 import org.parceler.Parcel;
 
 import java.text.SimpleDateFormat;
